@@ -34,6 +34,8 @@ entity Controller is
            RX : out  STD_LOGIC_VECTOR (4 downto 0);
            RA : out  STD_LOGIC_VECTOR (4 downto 0);
            RB : out  STD_LOGIC_VECTOR (4 downto 0);
+			  shift : out STD_LOGIC_VECTOR (3 downto 0);
+			  s34 : out STD_LOGIC_VECTOR(1 downto 0);
 			  IMM : out  STD_LOGIC_VECTOR (15 downto 0);
 			  AL : out STD_LOGIC_VECTOR (3 downto 0);
            regWri : out  STD_LOGIC;
@@ -64,6 +66,7 @@ begin
 		Opcode => Instruction(31 downto 26),
 		alu_sig => AL
 	);
-
+	shift <= Instruction(13 downto 10);
+	s34 <= ;
 end Behavioral;
 
