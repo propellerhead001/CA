@@ -1,0 +1,2 @@
+vhdtdtfi -prj MemManagement -o C:/Users/rjm529/CA/MemManagement/dflip.vhi -module dflip -template C:/Xilinx/14.2/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work reg.vhd -lib work ipcore_dir/DPMem_synth.vhd 
+vhdtdtfi -prj MemManagement -o C:/Users/rjm529/CA/MemManagement/dflip.vhi -module dflip -template C:/Xilinx/14.2/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work reg.vhd -lib work ipcore_dir/DPMem_synth.vhd 
