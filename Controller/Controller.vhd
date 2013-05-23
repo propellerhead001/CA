@@ -36,6 +36,7 @@ entity Controller is
            RB : out  STD_LOGIC_VECTOR (4 downto 0);
 			  shift : out STD_LOGIC_VECTOR (3 downto 0);
 			  s34 : out STD_LOGIC_VECTOR(1 downto 0);
+			  s1 : out STD_LOGIC;
 			  IMM : out  STD_LOGIC_VECTOR (15 downto 0);
 			  AL : out STD_LOGIC_VECTOR (3 downto 0);
            regWri : out  STD_LOGIC;
@@ -49,6 +50,7 @@ COMPONENT ALUController
 		alu_sig : OUT std_logic_vector(3 downto 0)
 		);
 	END COMPONENT;
+	signal s_imm : STD_LOGIC;
 begin
 	--RX only ever has value Rx as such is left permanently mapped (register writes are handled using regWri)
 	RX <= Instruction(4 downto 0);
@@ -67,6 +69,20 @@ begin
 		alu_sig => AL
 	);
 	shift <= Instruction(13 downto 10);
-	s34 <= ;
+	s34(0) <= '1' when Instruction(31 downto 27) = "10000" else
+				 '0';
+	s34(1) <= '1' when ((Instruction(31 downto 26) = "100001") or (Instruction(31 downto 26) = "100101")) else
+				 '0';
+	with Instruction(31 downto 26) select s_imm <= '1' when "000010",
+															  '1' when "000011",
+															  '1' when "010100",
+															  '1' when "010101",
+															  '1' when "010110",
+															  '1' when "100001",
+															  '1' when "100011",
+															  '1' when "100101",
+															  '1' when "100111",
+															  '0' when others;
+	s1 <= s_imm;
 end Behavioral;
 
