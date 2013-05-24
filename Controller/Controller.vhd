@@ -35,6 +35,7 @@ entity Controller is
            RA : out  STD_LOGIC_VECTOR (4 downto 0);
            RB : out  STD_LOGIC_VECTOR (4 downto 0);
 			  shift : out STD_LOGIC_VECTOR (3 downto 0);
+			  oen : out STD_LOGIC;
 			  s34 : out STD_LOGIC_VECTOR(1 downto 0);
 			  s1 : out STD_LOGIC;
 			  IMM : out  STD_LOGIC_VECTOR (15 downto 0);
@@ -84,5 +85,7 @@ begin
 															  '1' when "100111",
 															  '0' when others;
 	s1 <= s_imm;
+	with Instruction(31 downto 28) select oen <= '1' when "1000",
+															   '0' when others;
 end Behavioral;
 
