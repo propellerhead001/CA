@@ -41,9 +41,9 @@ entity Sequencer is
 end Sequencer;
 
 architecture Behavioral of Sequencer is
-type state_type is (count, jump, branch, eval_branch);
+type state_type is (count, jump_s, branch_s, eval_branch);
 signal state : state_type;
-signal instruction : integer;
+signal instruction,insruct_intermediate : integer;
 begin
 process(clk, rst)
 begin
@@ -51,19 +51,22 @@ begin
 	if (rst = '1') then
 		state <= count;
 	else
-		if ((state = count)and (jump = '1') and (break = '0'))then
-			state <= jump;
-		elsif((state = count)and (jump = '0') and (break = '1'))then
-			state <= break;
-		--the pipeline is designed to stall in teh case of a branch instruction
-		elsif(state = branch)then
+		if ((state = count)and (Jump = '1') and (Branch = '0'))then
+			state <= jump_s;
+		elsif((state = count)and (Jump = '0') and (Branch = '1'))then
+			state <= branch_s;
+		--the pipeline is designed to stall in the case of a branch instruction
+		elsif(state = branch_s)then
 			state <= eval_branch;
-		elsif((state = eval_branch) or (state = jump)) then
+		elsif((state = eval_branch) or (state = jump_s)) then
 			state <= count;
 		end if;
 	end if;
 	end if;
 end process;
+insruct_intermediate  <= instruction + to_integer(signed(Offset));
+--instruction never goes below 0
+Address <= STD_LOGIC_VECTOR(to_unsigned(instruction,8));
 process(clk, rst)
 begin
 	if (rising_edge(clk)) then
@@ -71,9 +74,20 @@ begin
 			instruction <= 0;
 		elsif(state <= count) then
 			instruction <= instruction + 1;
-		elsif(state = jump) then
-			if(instrucion + to_integer(signed(Offset))>-1) then
-				instruction <= instrucion + to_integer(signed(Offset));
+		elsif(state <= jump_s) then
+			--Ensure that the address is not negative.
+			--More complicated architectures would have a handling routine 
+			if(insruct_intermediate >-1)then
+				instruction <= insruct_intermediate;
+			end if;
+		elsif(state = branch_s)then
+			if(to_integer(unsigned(Flags and Conditions))>0) then
+				--check conditions, handles the posibility of more than one match ie. >=0 will also flag =0 in some cases
+				if(insruct_intermediate>-1) then
+					instruction <= insruct_intermediate;
+				end if;
+			else
+				instruction <= instruction + 1;
 			end if;
 		end if;
 	end if;
