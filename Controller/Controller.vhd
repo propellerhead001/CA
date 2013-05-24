@@ -31,6 +31,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity Controller is
     Port ( Instruction : in  STD_LOGIC_VECTOR (31 downto 0);
+			  clk : in STD_LOGIC;
+			  rst : in STD_LOGIC;
+			  address : out STD_LOGIC_VECTOR (7 downto 0);
            RX : out  STD_LOGIC_VECTOR (4 downto 0);
            RA : out  STD_LOGIC_VECTOR (4 downto 0);
            RB : out  STD_LOGIC_VECTOR (4 downto 0);
@@ -47,11 +50,24 @@ end Controller;
 architecture Behavioral of Controller is
 COMPONENT ALUController
 	PORT(
-		Opcode : IN std_logic_vector(5 downto 0);          
+		Opcode : IN std_logic_vector(5 downto 0);
 		alu_sig : OUT std_logic_vector(3 downto 0)
 		);
 	END COMPONENT;
-	signal s_imm : STD_LOGIC;
+		COMPONENT Sequencer
+	PORT(
+		Flags : IN std_logic_vector(7 downto 0);
+		Conditions : IN std_logic_vector(7 downto 0);
+		Offset : IN std_logic_vector(15 downto 0);
+		Branch : IN std_logic;
+		Jump : IN std_logic;
+		clk : IN std_logic;
+		rst : IN std_logic;          
+		Address : OUT std_logic_vector(7 downto 0)
+		);
+	END COMPONENT;
+	signal s_imm, branch, jump : STD_LOGIC;
+	signal conditions : STD_LOGIC_VECTOR (7 downto 0);
 begin
 	--RX only ever has value Rx as such is left permanently mapped (register writes are handled using regWri)
 	RX <= Instruction(4 downto 0);
@@ -68,6 +84,16 @@ begin
 	Inst_ALUController: ALUController PORT MAP(
 		Opcode => Instruction(31 downto 26),
 		alu_sig => AL
+	);
+	Inst_Sequencer: Sequencer PORT MAP(
+		Flags => flags,
+		Conditions => conditions,
+		Offset => Instruction(25 downto 10),
+		Branch => branch,
+		Jump => jump,
+		clk => clk,
+		rst => rst,
+		Address => address
 	);
 	shift <= Instruction(13 downto 10);
 	s34(0) <= '1' when Instruction(31 downto 27) = "10000" else
@@ -87,5 +113,9 @@ begin
 	s1 <= s_imm;
 	with Instruction(31 downto 28) select oen <= '1' when "1000",
 															   '0' when others;
+	jump <= '1' when Instruction(31 downto 26) = "110000" else
+			  '0';
+	branch <= '1' when Instruction(31 downto 26) = "110001" else
+			  '0';
 end Behavioral;
 

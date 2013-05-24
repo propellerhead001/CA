@@ -58,7 +58,11 @@ begin
 		--the pipeline is designed to stall in the case of a branch instruction
 		elsif(state = branch_s)then
 			state <= eval_branch;
-		elsif((state = eval_branch) or (state = jump_s)) then
+		elsif(((state = eval_branch)or (state = jump_s) )and (Jump = '1') and (Branch = '0')) then
+			state <= jump_s;
+		elsif(((state = eval_branch)or (state = jump_s) )and (Jump = '0') and (Branch = '1')) then
+			state <= branch_s;
+		elsif(((state = eval_branch)or (state = jump_s) )and (Jump = '0') and (Branch = '1')) then
 			state <= count;
 		end if;
 	end if;

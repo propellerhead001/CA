@@ -9,13 +9,13 @@
          <ClosedNodesVersion>2</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>Inst_ALUController - ALUController - Behavioral (C:/Users/Robert/Documents/GitHub/CA/Controller/ALUController.vhd)</SelectedItem>
+         <SelectedItem>Inst_Sequencer - Sequencer - Behavioral (C:/Users/Robert/Documents/GitHub/CA/Controller/Sequencer.vhd)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001bf000000020000000000000000000000000200000064ffffffff000000810000000300000002000001bf0000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>Inst_ALUController - ALUController - Behavioral (C:/Users/Robert/Documents/GitHub/CA/Controller/ALUController.vhd)</CurrentItem>
+      <CurrentItem>Inst_Sequencer - Sequencer - Behavioral (C:/Users/Robert/Documents/GitHub/CA/Controller/Sequencer.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="" guiview="Process" >
       <ClosedNodes>
@@ -58,6 +58,7 @@
       <ClosedNodes>
          <ClosedNodesVersion>1</ClosedNodesVersion>
          <ClosedNode>Configure Target Device</ClosedNode>
+         <ClosedNode>Design Utilities</ClosedNode>
          <ClosedNode>Implement Design</ClosedNode>
          <ClosedNode>User Constraints</ClosedNode>
       </ClosedNodes>
@@ -76,13 +77,13 @@
          <ClosedNode>/ALUContTest - behavior C:|Users|rjm529|CA|Controller|ALUContTest.vhd</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>ALUContTest - behavior (C:/Users/Robert/Documents/GitHub/CA/Controller/ALUContTest.vhd)</SelectedItem>
+         <SelectedItem>sequencer_test - behavior (C:/Users/Robert/Documents/GitHub/CA/Controller/sequencer_test.vhd)</SelectedItem>
       </SelectedItems>
-      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="vertical" >3</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000001bf000000020000000000000000000000000200000064ffffffff000000810000000300000002000001bf0000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>ALUContTest - behavior (C:/Users/Robert/Documents/GitHub/CA/Controller/ALUContTest.vhd)</CurrentItem>
+      <CurrentItem>sequencer_test - behavior (C:/Users/Robert/Documents/GitHub/CA/Controller/sequencer_test.vhd)</CurrentItem>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="" guiview="Process" >
       <ClosedNodes>

@@ -13,3 +13,4 @@ vhdtdtfi -prj Controller -o C:/Users/Robert/Documents/GitHub/CA/Controller/Seque
 vhdtdtfi -prj Controller -o C:/Users/Robert/Documents/GitHub/CA/Controller/Sequencer.vhi -module Sequencer -template C:/Xilinx/14.5/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work Sequencer.vhd 
 vhdtdtfi -prj Controller -o C:/Users/Robert/Documents/GitHub/CA/Controller/Sequencer.vhi -module Sequencer -template C:/Xilinx/14.5/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work Sequencer.vhd 
 vhdtdtfi -prj Controller -o C:/Users/Robert/Documents/GitHub/CA/Controller/Sequencer.vhi -module Sequencer -template C:/Xilinx/14.5/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work Sequencer.vhd 
+vhdtdtfi -prj Controller -o C:/Users/Robert/Documents/GitHub/CA/Controller/Sequencer.vhi -module Sequencer -template C:/Xilinx/14.5/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work Sequencer.vhd 
