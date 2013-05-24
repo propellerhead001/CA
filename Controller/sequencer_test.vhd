@@ -30,7 +30,7 @@ USE ieee.std_logic_1164.ALL;
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
+USE ieee.numeric_std.ALL;
  
 ENTITY sequencer_test IS
 END sequencer_test;
@@ -104,7 +104,25 @@ BEGIN
 		rst <= '1';
 		wait for clk_period *2;
 		rst <= '0';
-		
+		wait for clk_period *2;
+		Flags <= "00000001";
+		Conditions <= "00000001";
+		Offset <= STD_LOGIC_VECTOR(to_signed(15,16));
+		Branch <= '1';
+		wait for clk_period *2;
+		Conditions <= "00000000";
+		wait for clk_period *2;
+		Flags <= "00000001";
+		Conditions <= "00000001";
+		Offset <= STD_LOGIC_VECTOR(to_signed(-15,16));
+		Branch <= '1';
+		wait for clk_period *2;
+		Conditions <= "00000001";
+		Branch <= '0';
+		wait for clk_period *10;
+		Jump <= '1';
+		wait for clk_period;
+		Jump <= '0';
       wait;
    end process;
 
