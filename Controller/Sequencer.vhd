@@ -55,14 +55,28 @@ begin
 			state <= jump;
 		elsif((state = count)and (jump = '0') and (break = '1'))then
 			state <= break;
+		--the pipeline is designed to stall in teh case of a branch instruction
 		elsif(state = branch)then
 			state <= eval_branch;
 		elsif((state = eval_branch) or (state = jump)) then
-			satte <= count;
+			state <= count;
 		end if;
 	end if;
 	end if;
 end process;
-
+process(clk, rst)
+begin
+	if (rising_edge(clk)) then
+		if (rst = '1') then
+			instruction <= 0;
+		elsif(state <= count) then
+			instruction <= instruction + 1;
+		elsif(state = jump) then
+			if(instrucion + to_integer(signed(Offset))>-1) then
+				instruction <= instrucion + to_integer(signed(Offset));
+			end if;
+		end if;
+	end if;
+end process;
 end Behavioral;
 
