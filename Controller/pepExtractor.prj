@@ -1,1 +1,3 @@
+work	"ALUController.vhd"
+work	"Controller.vhd"
 work	"Sequencer.vhd"

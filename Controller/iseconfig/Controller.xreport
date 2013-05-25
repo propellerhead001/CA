@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2013-05-25T08:34:43</DateModified>
+  <DateModified>2013-05-25T09:36:26</DateModified>
   <ModuleName>Controller</ModuleName>
   <SummaryTimeStamp>2013-05-24T20:45:41</SummaryTimeStamp>
   <SavedFilePath>C:/Users/Robert/Documents/GitHub/CA/Controller/iseconfig/Controller.xreport</SavedFilePath>
@@ -11,7 +11,7 @@
  </header>
  <body>
   <viewgroup label="Design Overview" >
-   <view inputState="Unknown" program="implementation" ShowPartitionData="false" type="FPGASummary" file="Controller_summary.html" label="Summary" >
+   <view inputState="Unknown" program="implementation" ShowPartitionData="false" type="FPGASummary" file="Controller_summary.html" label="Summary" ExpandClockNets="false" >
     <toc-item title="Design Overview" target="Design Overview" />
     <toc-item title="Design Utilization Summary" target="Design Utilization Summary" />
     <toc-item title="Performance Summary" target="Performance Summary" />
