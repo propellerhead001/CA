@@ -22,7 +22,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -66,7 +66,7 @@ COMPONENT ALUController
 		Address : OUT std_logic_vector(7 downto 0)
 		);
 	END COMPONENT;
-	signal s_imm, branch, jump : STD_LOGIC;
+	signal s_imm, branch, jump, reg_temp : STD_LOGIC;
 	signal conditions : STD_LOGIC_VECTOR (7 downto 0);
 begin
 	--RX only ever has value Rx as such is left permanently mapped (register writes are handled using regWri)
@@ -95,11 +95,13 @@ begin
 		rst => rst,
 		Address => address
 	);
+	--sets shift value, ignored when shift is not operation
 	shift <= Instruction(13 downto 10);
 	s34(0) <= '1' when Instruction(31 downto 27) = "10000" else
 				 '0';
 	s34(1) <= '1' when ((Instruction(31 downto 26) = "100001") or (Instruction(31 downto 26) = "100101")) else
 				 '0';
+	--sets when an immediate instruction is issued, allows setting of switches
 	with Instruction(31 downto 26) select s_imm <= '1' when "000010",
 															  '1' when "000011",
 															  '1' when "010100",
@@ -111,11 +113,47 @@ begin
 															  '1' when "100111",
 															  '0' when others;
 	s1 <= s_imm;
+	--enables output to memory
 	with Instruction(31 downto 28) select oen <= '1' when "1000",
 															   '0' when others;
-	jump <= '1' when Instruction(31 downto 26) = "110000" else
+	--flags a jump operation
+	jump <= '1' when Instruction(31 downto 26) = "111111" else
 			  '0';
+	--flags a branch operation
 	branch <= '1' when Instruction(31 downto 26) = "110001" else
 			  '0';
+	--selects the flags for branch instructions
+	with Instruction(28 downto 26) select conditions <= "00000001" when "000",
+																		  "00000010" when "001",
+																		  "00000100" when "010",
+																		  "00001000" when "011",
+																		  "00010000" when "100",
+																		  "00100000" when "101",
+																		  "01000000" when "110",
+																		  "10000000" when "111",
+																		  "00000000" when others;
+	regWri <=reg_temp;
+	with Instruction(31 downto 26) select reg_temp <= '1' when "000000",
+																	 '1' when "000001",
+																	 '1' when "000010",
+																	 '1' when "000011",
+																	 '1' when "000100",
+																	 '1' when "000101",
+																	 '1' when "010000",
+																	 '1' when "010001",
+																	 '1' when "010010",
+																	 '1' when "010011",
+																	 '1' when "010100",
+																	 '1' when "010101",
+																	 '1' when "010110",
+																	 '1' when "011000",
+																	 '1' when "011001",
+																	 '1' when "011010",
+																	 '1' when "011011",
+																	 '1' when "100000",
+																	 '1' when "100001",
+																	 '1' when "100010",
+																	 '1' when "100011",
+																	 '0' when others;
 end Behavioral;
 

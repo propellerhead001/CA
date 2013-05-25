@@ -122,7 +122,11 @@ BEGIN
       wait for clk_period*10;
 
       -- insert stimulus here 
-
+		rst <= '1';
+		wait for clk_period;
+		rst <= '0';
+		Instruction(0)<= '1';
+		instruction(31 downto 26) <= "111111";
       wait;
    end process;
 
