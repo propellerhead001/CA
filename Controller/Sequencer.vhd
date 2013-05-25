@@ -62,7 +62,7 @@ begin
 			state <= jump_s;
 		elsif(((state = eval_branch)or (state = jump_s) )and (Jump = '0') and (Branch = '1')) then
 			state <= branch_s;
-		elsif(((state = eval_branch)or (state = jump_s) )and (Jump = '0') and (Branch = '1')) then
+		elsif(((state = eval_branch)or (state = jump_s) )and (Jump = '0') and (Branch = '0')) then
 			state <= count;
 		end if;
 	end if;

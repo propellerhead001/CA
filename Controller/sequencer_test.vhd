@@ -117,7 +117,7 @@ BEGIN
 		Offset <= STD_LOGIC_VECTOR(to_signed(-15,16));
 		Branch <= '1';
 		wait for clk_period *2;
-		Conditions <= "00000001";
+		Offset <= STD_LOGIC_VECTOR(to_signed(15,16));
 		Branch <= '0';
 		wait for clk_period *10;
 		Jump <= '1';
