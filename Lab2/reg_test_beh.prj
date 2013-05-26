@@ -1,0 +1,4 @@
+vhdl work "reg.vhd"
+vhdl work "DigEng.vhd"
+vhdl work "reg_bank.vhd"
+vhdl work "reg_test.vhd"

@@ -1,0 +1,5 @@
+work	"DigEng.vhd"
+work	"alu.vhd"
+work	"architecture_D.vhd"
+work	"reg.vhd"
+work	"reg_bank.vhd"

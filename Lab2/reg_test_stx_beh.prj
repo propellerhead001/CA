@@ -1,0 +1,4 @@
+vhdl isim_temp "reg.vhd"
+vhdl isim_temp "DigEng.vhd"
+vhdl isim_temp "reg_bank.vhd"
+vhdl isim_temp "reg_test.vhd"

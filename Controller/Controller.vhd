@@ -40,7 +40,7 @@ entity Controller is
 			  shift : out STD_LOGIC_VECTOR (3 downto 0);
 			  oen : out STD_LOGIC;
 			  s34 : out STD_LOGIC_VECTOR(1 downto 0);
-			  s1 : out STD_LOGIC;
+			  s1 : out STD_LOGIC_VECTOR (1 downto 0);
 			  IMM : out  STD_LOGIC_VECTOR (15 downto 0);
 			  AL : out STD_LOGIC_VECTOR (3 downto 0);
            regWri : out  STD_LOGIC;
@@ -67,6 +67,7 @@ COMPONENT ALUController
 		);
 	END COMPONENT;
 	type reg_delay is array(3 downto 0) of STD_LOGIC_VECTOR(4 downto 0);
+	signal RA_temp, RB_temp : STD_LOGIC_VECTOR(4 downto 0);
 	signal s_imm, branch, jump, reg_temp : STD_LOGIC;
 	signal conditions : STD_LOGIC_VECTOR (7 downto 0);
 	signal data_a, data_b : STD_LOGIC_VECTOR(2 downto 0);
@@ -74,12 +75,14 @@ COMPONENT ALUController
 begin
 	--RX only ever has value Rx as such is left permanently mapped (register writes are handled using regWri)
 	RX_delay(0) <= Instruction(4 downto 0);
-	RX <= RX(3);
+	RX <= RX_delay(3);
 	--allows Ry to be used as memory address, with or without immediate
-	RA <= "00000" when ((Instruction(31 downto 30) = "10") and (Instruction(27 downto 26) = "01")) else
+	RA <= RA_temp;
+	RA_temp <= "00000" when ((Instruction(31 downto 30) = "10") and (Instruction(27 downto 26) = "01")) else
 			Instruction(9 downto 5);
 	--allows Rx to be used to point to data to outputted to memory
-	RB <= Instruction(4 downto 0) when Instruction(31 downto 28)  = "1001" else
+	RB <= RB_temp;
+	RB_temp <= Instruction(4 downto 0) when Instruction(31 downto 28)  = "1001" else
 			Instruction(14 downto 10);
 	--immediate is always mapped, ALU can ignore I0 anyway.
 	IMM <= Instruction(25 downto 10);
@@ -116,7 +119,7 @@ begin
 															  '1' when "100101",
 															  '1' when "100111",
 															  '0' when others;
-	s1 <= s_imm;
+	
 	--enables output to memory
 	with Instruction(31 downto 28) select oen <= '1' when "1000",
 															   '0' when others;
@@ -138,11 +141,12 @@ begin
 				end if;
 			end if;
 		end process;
-		data_a(i-1) <= '1' when	(RX_delay(0) = RX_delay(i)) else
+		data_a(i-1) <= '1' when	(RA_temp = RX_delay(i)) else
 							'0';
-		data_b(i-1) <= '1' when	(RX_delay(0) = RX_delay(i)) else
+		data_b(i-1) <= '1' when	(RB_temp = RX_delay(i)) else
 							'0';
 	end generate reg_write_delay;
+	
 	with Instruction(28 downto 26) select conditions <= "00000001" when "000",
 																		  "00000010" when "001",
 																		  "00000100" when "010",

@@ -1,0 +1,2 @@
+vhdtdtfi -prj Lab2 -o C:/Users/rjm529/CA/Lab2/dflip.vhi -module dflip -template C:/Xilinx/14.2/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work reg.vhd 
+vhdtdtfi -prj Lab2 -o "C:/Users/Robert/Documents/Electronic and Computer Engineering/CA/Lab2/dflip.vhi" -module dflip -template C:/Xilinx/14.4/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work reg.vhd 

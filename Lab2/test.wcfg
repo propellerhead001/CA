@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="C:/Users/rjm529/CA/Lab2/reg_bank_test_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="digeng" />
+            <top_module name="numeric_std" />
+            <top_module name="reg_bank_test" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="21" />
+   <wvobject fp_name="/reg_bank_test/imm" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">imm[15:0]</obj_property>
+      <obj_property name="ObjectShortName">imm[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/mem_in" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mem_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_in[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/s134" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">s134[2:0]</obj_property>
+      <obj_property name="ObjectShortName">s134[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/ra" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ra[2:0]</obj_property>
+      <obj_property name="ObjectShortName">ra[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/rb" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">rb[2:0]</obj_property>
+      <obj_property name="ObjectShortName">rb[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/w_en" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">w_en</obj_property>
+      <obj_property name="ObjectShortName">w_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/wa" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wa[2:0]</obj_property>
+      <obj_property name="ObjectShortName">wa[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/shift" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">shift[3:0]</obj_property>
+      <obj_property name="ObjectShortName">shift[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/al" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">al[3:0]</obj_property>
+      <obj_property name="ObjectShortName">al[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/rst" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/uut/oen" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">oen</obj_property>
+      <obj_property name="ObjectShortName">oen</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/mem_out" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mem_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_out[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/mem_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mem_addr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_addr[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/uut/ai" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ai[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ai[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/uut/bi" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">bi[15:0]</obj_property>
+      <obj_property name="ObjectShortName">bi[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/uut/alu_out" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">alu_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_out[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/flags" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">flags[7:0]</obj_property>
+      <obj_property name="ObjectShortName">flags[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/reg_num" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_num</obj_property>
+      <obj_property name="ObjectShortName">reg_num</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/size" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">size</obj_property>
+      <obj_property name="ObjectShortName">size</obj_property>
+   </wvobject>
+   <wvobject fp_name="/reg_bank_test/clk_period" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_period</obj_property>
+      <obj_property name="ObjectShortName">clk_period</obj_property>
+   </wvobject>
+</wave_config>

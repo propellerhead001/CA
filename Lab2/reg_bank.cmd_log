@@ -1,0 +1,5 @@
+xst -intstyle ise -ifn "C:/Users/rjm529/CA/Lab2/reg_bank.xst" -ofn "C:/Users/rjm529/CA/Lab2/reg_bank.syr" 
+xst -intstyle ise -ifn "C:/Users/rjm529/CA/Lab2/reg_bank.xst" -ofn "C:/Users/rjm529/CA/Lab2/reg_bank.syr" 
+xst -intstyle ise -ifn "C:/Users/rjm529/CA/Lab2/reg_bank.xst" -ofn "C:/Users/rjm529/CA/Lab2/reg_bank.syr" 
+xst -intstyle ise -ifn "C:/Users/rjm529/CA/Lab2/reg_bank.xst" -ofn "C:/Users/rjm529/CA/Lab2/reg_bank.syr" 
+vhdtdtfi -prj Lab2 -o C:/Users/rjm529/CA/Lab2/reg_bank.vhi -module reg_bank -template C:/Xilinx/14.2/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work reg.vhd -lib work DigEng.vhd -lib work reg_bank.vhd 
