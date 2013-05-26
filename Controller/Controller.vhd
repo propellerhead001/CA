@@ -66,11 +66,15 @@ COMPONENT ALUController
 		Address : OUT std_logic_vector(7 downto 0)
 		);
 	END COMPONENT;
+	type reg_delay is array(3 downto 0) of STD_LOGIC_VECTOR(4 downto 0);
 	signal s_imm, branch, jump, reg_temp : STD_LOGIC;
 	signal conditions : STD_LOGIC_VECTOR (7 downto 0);
+	signal data_a, data_b : STD_LOGIC_VECTOR(2 downto 0);
+	signal RX_delay : reg_delay;
 begin
 	--RX only ever has value Rx as such is left permanently mapped (register writes are handled using regWri)
-	RX <= Instruction(4 downto 0);
+	RX_delay(0) <= Instruction(4 downto 0);
+	RX <= RX(3);
 	--allows Ry to be used as memory address, with or without immediate
 	RA <= "00000" when ((Instruction(31 downto 30) = "10") and (Instruction(27 downto 26) = "01")) else
 			Instruction(9 downto 5);
@@ -123,6 +127,22 @@ begin
 	branch <= '1' when Instruction(31 downto 26) = "110001" else
 			  '0';
 	--selects the flags for branch instructions
+	reg_write_delay : for i in 1 to 3 generate
+		process(clk,rst)
+		begin
+			if(rising_edge(clk)) then
+				if(rst = '1') then
+					RX_delay(i) <= "00000";
+				else
+					RX_delay(i) <= RX_delay(i-1);
+				end if;
+			end if;
+		end process;
+		data_a(i-1) <= '1' when	(RX_delay(0) = RX_delay(i)) else
+							'0';
+		data_b(i-1) <= '1' when	(RX_delay(0) = RX_delay(i)) else
+							'0';
+	end generate reg_write_delay;
 	with Instruction(28 downto 26) select conditions <= "00000001" when "000",
 																		  "00000010" when "001",
 																		  "00000100" when "010",
