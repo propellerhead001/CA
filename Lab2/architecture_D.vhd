@@ -31,7 +31,7 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity arch_d is
-	 Generic(Reg_Num : integer := 8;
+	 Generic(Reg_Num : integer := 32;
 				size : integer := 16);
     Port ( imm : in  signed (size-1 downto 0);
            mem_in : in  signed (size-1 downto 0);

@@ -41,6 +41,9 @@ entity Controller is
 			  oen : out STD_LOGIC;
 			  s34 : out STD_LOGIC_VECTOR(1 downto 0);
 			  s1 : out STD_LOGIC_VECTOR (1 downto 0);
+			  s2 : out STD_LOGIC_VECTOR (1 downto 0);
+			  s5 : out STD_LOGIC;
+			  s6 : out STD_LOGIC;
 			  IMM : out  STD_LOGIC_VECTOR (15 downto 0);
 			  AL : out STD_LOGIC_VECTOR (3 downto 0);
            regWri : out  STD_LOGIC;
@@ -68,7 +71,8 @@ COMPONENT ALUController
 	END COMPONENT;
 	type reg_delay is array(3 downto 0) of STD_LOGIC_VECTOR(4 downto 0);
 	signal RA_temp, RB_temp : STD_LOGIC_VECTOR(4 downto 0);
-	signal s_imm, branch, jump, reg_temp : STD_LOGIC;
+	signal s1_imm, branch, jump, reg_temp,s5_temp, s6_temp : STD_LOGIC;
+	signal s1_temp, s2_temp : STD_LOGIC_VECTOR(1 downto 0);
 	signal conditions : STD_LOGIC_VECTOR (7 downto 0);
 	signal data_a, data_b : STD_LOGIC_VECTOR(2 downto 0);
 	signal RX_delay : reg_delay;
@@ -109,7 +113,7 @@ begin
 	s34(1) <= '1' when ((Instruction(31 downto 26) = "100001") or (Instruction(31 downto 26) = "100101")) else
 				 '0';
 	--sets when an immediate instruction is issued, allows setting of switches
-	with Instruction(31 downto 26) select s_imm <= '1' when "000010",
+	with Instruction(31 downto 26) select s1_imm <= '1' when "000010",
 															  '1' when "000011",
 															  '1' when "010100",
 															  '1' when "010101",
@@ -146,7 +150,30 @@ begin
 		data_b(i-1) <= '1' when	(RB_temp = RX_delay(i)) else
 							'0';
 	end generate reg_write_delay;
-	
+	with data_b select s5_temp <= '1' when "001",
+											'0' when others;
+	s1 <= "01" when s1_imm = '1' else
+			s1_temp;
+	with data_b select s1_temp <= "10" when "100",
+											"10" when "110",
+											"10" when "111",
+											"11" when "010",
+											"11" when "011",
+											"00" when others;
+	s5 <= s5_temp;
+	with data_b select s5_temp <= '1' when "001",
+											'0' when others;
+	s2 <= s2_temp;
+	with data_a select s2_temp <= "10" when "100",
+											"10" when "110",
+											"10" when "111",
+											"11" when "010",
+											"11" when "011",
+											"00" when others;
+	s6 <= s6_temp;
+	with data_a select s6_temp <= '1' when "001",
+											'0' when others;
+	--set the conditions for branch instructions
 	with Instruction(28 downto 26) select conditions <= "00000001" when "000",
 																		  "00000010" when "001",
 																		  "00000100" when "010",
@@ -157,6 +184,7 @@ begin
 																		  "10000000" when "111",
 																		  "00000000" when others;
 	regWri <=reg_temp;
+	--sets the write flag for an instruction
 	with Instruction(31 downto 26) select reg_temp <= '1' when "000000",
 																	 '1' when "000001",
 																	 '1' when "000010",
