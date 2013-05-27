@@ -1,1 +1,0 @@
-vhdtdtfi -prj Controller -o C:/Users/rjm529/CA/Controller/ALUController.vhi -module ALUController -template C:/Xilinx/14.2/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib work ALUController.vhd 

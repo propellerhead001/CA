@@ -1,1 +1,0 @@
--intstyle "ise" -incremental -lib "secureip" -o "C:/Users/Robert/Documents/GitHub/CA/Controller/controller_test_isim_beh.exe" -prj "C:/Users/Robert/Documents/GitHub/CA/Controller/controller_test_beh.prj" "work.controller_test" 
